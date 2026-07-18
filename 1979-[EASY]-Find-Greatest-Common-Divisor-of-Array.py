@@ -1,4 +1,4 @@
-class Solution:
+class Solution1:
     """
     Intuition:
         Find the largest and the smallest numbers. Then,
@@ -27,3 +27,35 @@ class Solution:
                 res = i
 
         return res
+
+
+
+class Solution2:
+    """
+    Intuition:
+        Standard implementation of Euclidian's algorithm which
+        is the fastest way to find GCD. The intuition is as
+        follows:
+
+        Any divisor common to both numbers must also divide the
+        remainder, so you can keep replacing the larger number
+        with the remainder until nothing is left.
+
+    Runtime:
+        O(n) to find largest and smallest numbers.
+
+        O(log K) to find the GCD given small and large nums.
+
+        Overall, O(n + log K).
+
+    Memory:
+        O(1).
+    """
+
+    def findGCD(self, nums: list[int]) -> int:
+        small, large = min(nums), max(nums)
+
+        while small:
+            small, large = large % small, small
+
+        return large
