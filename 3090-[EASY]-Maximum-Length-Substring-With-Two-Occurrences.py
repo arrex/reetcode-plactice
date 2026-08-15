@@ -29,9 +29,7 @@ class Solution:
                 l += 1
 
             # store res
-            size = r - l + 1
-            if size > res:
-                res = size
+            res = max(res, r - l + 1)
 
             # increment r
             r += 1
