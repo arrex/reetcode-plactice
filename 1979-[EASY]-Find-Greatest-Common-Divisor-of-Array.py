@@ -29,7 +29,6 @@ class Solution1:
         return res
 
 
-
 class Solution2:
     """
     Intuition:

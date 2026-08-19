@@ -19,12 +19,12 @@ class Solution:
 
         while r < len(s):
             # update freq counter w curr char
-            ix = ord(s[r]) - ord('a')
+            ix = ord(s[r]) - ord("a")
             freq[ix] += 1
 
             # check window validity and resize window if needed
             while freq[ix] > 2:
-                jx = ord(s[l]) - ord('a')
+                jx = ord(s[l]) - ord("a")
                 freq[jx] -= 1
                 l += 1
 
