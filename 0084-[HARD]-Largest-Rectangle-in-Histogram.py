@@ -34,8 +34,7 @@ class Solution:
 
                 # check if popped height could have been largest rectangle
                 area = height * (i - ix)
-                if area > res:
-                    res = area
+                res = max(res, area)
 
                 startIx = ix
 
@@ -43,7 +42,6 @@ class Solution:
 
         for i, h in stack:
             area = h * (N - i)
-            if area > res:
-                res = area
+            res = max(res, area)
 
         return res

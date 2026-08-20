@@ -3,7 +3,16 @@ line-length = 100
 indent-width = 4
 
 [tool.ruff.lint]
-ignore = ["E741"]
+ignore = [
+    "C405",
+    "E741",
+    "PERF402",
+    "RUF015",
+    "SIM211",
+    "UP045",
+    "UP006",
+    "UP035",
+]
 
 [tool.ruff.format]
 quote-style = "double"

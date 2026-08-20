@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     """
     Intuition:
@@ -11,7 +14,7 @@ class Solution:
         as `nums`.
     """
 
-    def resultArray(self, nums: list[int]) -> list[int]:
+    def resultArray(self, nums: List[int]) -> List[int]:
         arr1, arr2 = [nums[0]], [nums[1]]
 
         for n in nums[2:]:

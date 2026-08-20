@@ -1,5 +1,6 @@
 from collections import defaultdict
 from math import inf
+from typing import List
 
 
 class Solution1:
@@ -14,7 +15,7 @@ class Solution1:
         O(1).
     """
 
-    def minimumDistance(self, nums: list[int]) -> int:
+    def minimumDistance(self, nums: List[int]) -> int:
         # early return for base case
         if len(nums) < 3:
             return -1
@@ -56,7 +57,7 @@ class Solution2:
         O(n) for the hashtable.
     """
 
-    def minimumDistance(self, nums: list[int]) -> int:
+    def minimumDistance(self, nums: List[int]) -> int:
         # early return for base case
         if len(nums) < 3:
             return -1
@@ -64,7 +65,7 @@ class Solution2:
         res = inf
 
         # build hashmap
-        hashmap: defaultdict[int, list[int]] = defaultdict(list)
+        hashmap = defaultdict(list)
         for i, n in enumerate(nums):
             hashmap[n].append(i)
 
@@ -79,9 +80,7 @@ class Solution2:
             while l < len(val) - 2:
                 i, j, k = val[l], val[l + 1], val[l + 2]
                 dist = abs(i - j) + abs(j - k) + abs(k - i)
-
-                if dist < res:
-                    res = dist
+                res = min(res, dist)
 
                 l += 1
 
@@ -102,7 +101,7 @@ class Solution3:
         Same as Solution2.
     """
 
-    def minimumDistance(self, nums: list[int]) -> int:
+    def minimumDistance(self, nums: List[int]) -> int:
         # early return for base case
         if len(nums) < 3:
             return -1
@@ -110,7 +109,7 @@ class Solution3:
         res = inf
 
         # build hashmap
-        hashmap: defaultdict[int, list[int]] = defaultdict(list)
+        hashmap = defaultdict(list)
         for i, n in enumerate(nums):
             hashmap[n].append(i)
 
@@ -125,9 +124,7 @@ class Solution3:
             while l < len(val) - 2:
                 r = l + 2
                 dist = abs(val[l] - val[r]) * 2
-
-                if dist < res:
-                    res = dist
+                res = min(res, dist)
 
                 l += 1
 

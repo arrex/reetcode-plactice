@@ -34,8 +34,7 @@ class Solution1:
                     currStreak += 1
                     currNum += 1
 
-                if currStreak > longest:
-                    longest = currStreak
+                longest = max(longest, currStreak)
 
         return longest
 
@@ -70,8 +69,7 @@ class Solution2:
             while curr + 1 in nums:
                 curr += 1
 
-            if curr - n + 1 > res:
-                res = curr - n + 1
+            res = max(res, curr - n + 1)
 
             # optimization
             if res * 2 >= len(nums):

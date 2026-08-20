@@ -53,9 +53,7 @@ class Solution:
     def isSameTree(self, root, subRoot):
         if not root and not subRoot:
             return True
-        elif (not root and subRoot) or (root and not subRoot):
-            return False
-        elif root.val != subRoot.val:
+        elif (not root and subRoot) or (root and not subRoot) or root.val != subRoot.val:
             return False
 
         return self.isSameTree(root.left, subRoot.left) and self.isSameTree(

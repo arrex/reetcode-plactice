@@ -1,4 +1,5 @@
 from collections import defaultdict
+from typing import List
 
 
 class Solution:
@@ -16,7 +17,7 @@ class Solution:
         O(n) space for the 'good' and 'counter' dictionaries.
     """
 
-    def isGood(self, nums: list[int]) -> bool:
+    def isGood(self, nums: List[int]) -> bool:
         N = len(nums)
         good = {i: 1 for i in range(1, N - 1)}
         good[N - 1] = 2

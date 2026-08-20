@@ -1,7 +1,6 @@
-from typing import List
 import heapq
-
 from math import sqrt
+from typing import List
 
 
 class Solution:

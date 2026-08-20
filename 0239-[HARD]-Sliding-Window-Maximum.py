@@ -1,7 +1,6 @@
-from typing import List
-from collections import deque
-
 import heapq
+from collections import deque
+from typing import List
 
 
 class Solution1:

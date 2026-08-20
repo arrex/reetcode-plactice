@@ -1,5 +1,5 @@
-from typing import Optional
 from collections import deque
+from typing import Optional
 
 
 # Definition for a binary tree node.
@@ -59,8 +59,7 @@ class Solution2:
         while q:
             node, depth = q.popleft()
 
-            if depth > maxDepth:
-                maxDepth = depth
+            maxDepth = max(maxDepth, depth)
 
             if node.left:
                 q.append((node.left, depth + 1))

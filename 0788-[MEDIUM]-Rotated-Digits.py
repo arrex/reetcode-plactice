@@ -96,7 +96,7 @@ class Solution2:
 
             limit = int(digits[pos]) if tight else 9
             res = 0
-            for d in range(0, limit + 1):
+            for d in range(limit + 1):
                 # prune branches of invalid digits
                 if d in [3, 4, 7]:
                     continue

@@ -16,9 +16,7 @@ class Solution:
         res = []
 
         for num in nums:
-            if not res:
-                res.append(num)
-            elif num >= res[-1]:
+            if not res or num >= res[-1]:
                 res.append(num)
 
         return len(res)

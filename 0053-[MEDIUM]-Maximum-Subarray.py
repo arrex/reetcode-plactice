@@ -28,8 +28,7 @@ class Solution1:
 
             curr += nums[r]
 
-            if curr > res:
-                res = curr
+            res = max(res, curr)
 
             r += 1
 
@@ -56,11 +55,9 @@ class Solution2:
         curr = 0
 
         for n in nums:
-            if curr < 0:
-                curr = 0
+            curr = max(curr, 0)
             curr += n
-            if curr > res:
-                res = curr
+            res = max(res, curr)
 
         return res
 

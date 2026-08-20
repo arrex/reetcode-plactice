@@ -41,8 +41,7 @@ class Solution1:
                 numGood += 1
 
             # Compute new maximum value in path
-            if node.val >= maxVal:
-                maxVal = node.val
+            maxVal = max(node.val, maxVal)
 
             if node.left:
                 q.append((node.left, maxVal))
@@ -77,8 +76,7 @@ class Solution2:
             if node.val >= maxVal:
                 self.good += 1
 
-            if node.val > maxVal:
-                maxVal = node.val
+            maxVal = max(maxVal, node.val)
 
             dfs(node.left, maxVal)
             dfs(node.right, maxVal)

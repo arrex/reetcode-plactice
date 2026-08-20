@@ -1,5 +1,5 @@
-from typing import List
 from collections import deque
+from typing import List
 
 
 class Solution1:
@@ -43,11 +43,11 @@ class Solution1:
         # Number of edges that need to be flipped
         res = 0
         # DFS from city 0, encode as (city, parent)
-        q = deque([(-1, 0)])
+        q = deque([0])
         seen = set([0])
 
         while q:
-            parent, city = q.pop()
+            city = q.pop()
 
             for nei, dir in adj[city]:
                 if nei not in seen:
@@ -55,7 +55,7 @@ class Solution1:
                     if dir == 1:
                         res += 1
 
-                    q.append((city, nei))
+                    q.append(nei)
                     seen.add(nei)
 
         return res

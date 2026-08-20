@@ -21,8 +21,7 @@ class Solution:
         while l < r:
             currVol = (r - l) * min(height[l], height[r])
 
-            if currVol > maxVol:
-                maxVol = currVol
+            maxVol = max(maxVol, currVol)
 
             if height[l] < height[r]:
                 l += 1

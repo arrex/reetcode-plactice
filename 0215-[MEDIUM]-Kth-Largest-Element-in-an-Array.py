@@ -1,6 +1,6 @@
 import heapq
-from typing import List
 from math import inf
+from typing import List
 
 
 class Solution1:
@@ -111,11 +111,9 @@ class Solution3:
         maxVal, minVal = -inf, inf
 
         for num in nums:
-            if num > maxVal:
-                maxVal = num
+            maxVal = max(maxVal, num)
 
-            if num < minVal:
-                minVal = num
+            minVal = min(minVal, num)
 
         freq = [0] * int(maxVal - minVal + 1)
 

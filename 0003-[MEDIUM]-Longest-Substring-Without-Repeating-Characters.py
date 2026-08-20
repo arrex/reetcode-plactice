@@ -28,8 +28,7 @@ class Solution:
 
             chars.add(s[r])
 
-            if r - l + 1 > longest:
-                longest = r - l + 1
+            longest = max(longest, r - l + 1)
 
             r += 1
 

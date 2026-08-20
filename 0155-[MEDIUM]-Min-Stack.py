@@ -33,8 +33,7 @@ class MinStack:
         self.currMin = math.inf
 
     def push(self, val: int) -> None:
-        if val < self.currMin:
-            self.currMin = val
+        self.currMin = min(self.currMin, val)
 
         self.stack.append(val)
         self.minStack.append(self.currMin)

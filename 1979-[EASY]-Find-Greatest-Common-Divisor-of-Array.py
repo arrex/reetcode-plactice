@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution1:
     """
     Intuition:
@@ -18,7 +21,7 @@ class Solution1:
         O(1).
     """
 
-    def findGCD(self, nums: list[int]) -> int:
+    def findGCD(self, nums: List[int]) -> int:
         small, large = min(nums), max(nums)
         res = 1
 
@@ -51,7 +54,7 @@ class Solution2:
         O(1).
     """
 
-    def findGCD(self, nums: list[int]) -> int:
+    def findGCD(self, nums: List[int]) -> int:
         small, large = min(nums), max(nums)
 
         while small:

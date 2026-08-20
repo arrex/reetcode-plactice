@@ -1,4 +1,5 @@
 from math import inf
+from typing import List
 
 
 class Solution1:
@@ -29,7 +30,7 @@ class Solution1:
         Overall, O(n) memory.
     """
 
-    def maxJumps(self, arr: list[int], d: int) -> int:
+    def maxJumps(self, arr: List[int], d: int) -> int:
         # need dest to be smaller than curr
         N = len(arr)
         memo = [-inf] * N
@@ -103,7 +104,7 @@ class Solution2:
         O(n) for the DP cache.
     """
 
-    def maxJumps(self, arr: list[int], d: int) -> int:
+    def maxJumps(self, arr: List[int], d: int) -> int:
         N = len(arr)
         # base case -- smallest value has nowhere to jump which is why we skip 1st elmt
         dp = [1] * N

@@ -1,4 +1,5 @@
 from collections import deque
+from typing import List
 
 
 class Solution1:
@@ -19,7 +20,7 @@ class Solution1:
         example of a 1x1 grid.
     """
 
-    def nearestExit(self, maze: list[list[str]], entrance: list[int]) -> int:
+    def nearestExit(self, maze: List[List[str]], entrance: List[int]) -> int:
         m, n = len(maze), len(maze[0])
         maze[entrance[0]][entrance[1]] = "x"
         q = deque([(entrance[0], entrance[1])])
@@ -68,7 +69,7 @@ class Solution2:
         it to this point without checking bounds again, saving us runtime.
     """
 
-    def nearestExit(self, maze: list[list[str]], entrance: list[int]) -> int:
+    def nearestExit(self, maze: List[List[str]], entrance: List[int]) -> int:
         # Constants
         m, n = len(maze), len(maze[0])
         dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]

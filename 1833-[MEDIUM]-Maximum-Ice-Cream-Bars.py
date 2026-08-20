@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution1:
     """
     Intuition:
@@ -15,7 +18,7 @@ class Solution1:
         O(1) since sort in place.
     """
 
-    def maxIceCream(self, costs: list[int], coins: int) -> int:
+    def maxIceCream(self, costs: List[int], coins: int) -> int:
         costs.sort()
 
         res = 0

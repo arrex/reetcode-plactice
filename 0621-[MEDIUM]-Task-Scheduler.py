@@ -1,6 +1,6 @@
-from typing import List
-from collections import deque, Counter
 import heapq
+from collections import Counter, deque
+from typing import List
 
 
 class Solution1:
@@ -39,7 +39,7 @@ class Solution1:
             freq[t] = freq.get(t, 0) + 1
 
         maxHeap = []
-        for k, v in freq.items():
+        for v in freq.values():
             heapq.heappush(maxHeap, -v)
 
         # cooldown queue: store as (freq, cooldown end time)
@@ -113,7 +113,7 @@ class Solution2:
 
         # accounting for other tasks with frequency = maxFreq as well
         cnt = 0
-        for t, f in c.items():
+        for f in c.values():
             if f == maxFreq:
                 cnt += 1
 

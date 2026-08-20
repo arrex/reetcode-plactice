@@ -72,10 +72,9 @@ class Solution2:
             res += 1
 
             # Check even palindrome base case (length 2)
-            if i < n - 1:
-                if s[i] == s[i + 1]:
-                    dp[i][i + 1] = True
-                    res += 1
+            if i < n - 1 and s[i] == s[i + 1]:
+                dp[i][i + 1] = True
+                res += 1
 
         # Bottom-up, starting at length 3
         for length in range(3, n + 1):

@@ -25,7 +25,6 @@ class Solution:
             currSum -= nums[i - k]
             currSum += nums[i]
 
-            if currSum > maxSum:
-                maxSum = currSum
+            maxSum = max(maxSum, currSum)
 
         return maxSum / k

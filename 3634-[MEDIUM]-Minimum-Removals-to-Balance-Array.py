@@ -25,8 +25,7 @@ class Solution:
                 l += 1
 
             # check against max window stored
-            if r - l + 1 > res:
-                res = r - l + 1
+            res = max(res, r - l + 1)
 
             r += 1
 

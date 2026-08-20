@@ -59,7 +59,7 @@ class Solution:
         # note that if there is ONE reservation within seats 2-9 inclusive, the
         # most amt of groups we can assign is 1
         DECODE = [2] + [int(not (i & 240) or not (i & 60) or not (i & 15)) for i in range(1, 256)]
-        rows  = defaultdict(int)
+        rows = defaultdict(int)
 
         for row, seat in reservedSeats:
             rows[row] |= ENCODE[seat]

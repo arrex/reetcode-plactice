@@ -59,8 +59,7 @@ class Solution1:
             ]
             highest = max(combinations)
 
-            if highest > self.maxSum:
-                self.maxSum = highest
+            self.maxSum = max(self.maxSum, highest)
 
             return max([left + node.val, right + node.val, node.val])
 
@@ -135,8 +134,7 @@ class Solution3:
                     right = max(maxPaths.get(node.right, 0), 0)
                     path = left + node.val + right
 
-                    if path > res:
-                        res = path
+                    res = max(res, path)
 
                     maxPaths[node] = node.val + max(left, right)
 

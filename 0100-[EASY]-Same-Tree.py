@@ -1,5 +1,5 @@
-from typing import Optional
 from collections import deque
+from typing import Optional
 
 
 # Definition for a binary tree node.
@@ -28,9 +28,7 @@ class Solution1:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         if not p and not q:
             return True
-        if (p and not q) or (not p and q):
-            return False
-        elif p.val != q.val:
+        if (p and not q) or (not p and q) or p.val != q.val:
             return False
 
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
@@ -60,9 +58,7 @@ class Solution2:
 
                 if not n1 and not n2:
                     continue
-                elif (n1 and not n2) or (not n1 and n2):
-                    return False
-                elif n1.val != n2.val:
+                elif (n1 and not n2) or (not n1 and n2) or n1.val != n2.val:
                     return False
 
                 queue.append((n1.left, n2.left))

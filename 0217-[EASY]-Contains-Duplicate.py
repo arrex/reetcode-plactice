@@ -39,4 +39,4 @@ class Solution2:
     """
 
     def containsDuplicate(self, nums: List[int]) -> bool:
-        return not len(nums) == len(set(nums))
+        return len(nums) != len(set(nums))

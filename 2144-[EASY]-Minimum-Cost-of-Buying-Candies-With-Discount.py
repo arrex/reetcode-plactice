@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     """
     Intuition:
@@ -27,7 +30,7 @@ class Solution:
         O(1) to sort since in-place.
     """
 
-    def minimumCost(self, cost: list[int]) -> int:
+    def minimumCost(self, cost: List[int]) -> int:
         cost.sort()
         res = 0
 

@@ -1,5 +1,5 @@
-from typing import List, Set
 from collections import deque
+from typing import List, Set
 
 
 class Solution:
@@ -33,7 +33,7 @@ class Solution:
                         availableCities.remove(i)
 
         N = len(isConnected)
-        availableCities = set([i for i in range(N)])
+        availableCities = set(range(N))
         numProvinces = 0
 
         for city in range(N):

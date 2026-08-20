@@ -1,4 +1,5 @@
 from collections import defaultdict, deque
+from typing import List
 
 
 class Solution:
@@ -32,7 +33,7 @@ class Solution:
         Overall, O(n) space.
     """
 
-    def minJumps(self, arr: list[int]) -> int:
+    def minJumps(self, arr: List[int]) -> int:
         N = len(arr)
         adj = defaultdict(list)
         for i, n in enumerate(arr):

@@ -37,8 +37,7 @@ class Solution1:
             if nums[r] == 1:
                 curr += 1
 
-                if curr > res:
-                    res = curr
+                res = max(res, curr)
             else:
                 if not hasDeleted:
                     hasDeleted = True
@@ -70,8 +69,7 @@ class Solution2:
             if nums[r] == 1:
                 curr += 1
 
-                if curr > res:
-                    res = curr
+                res = max(res, curr)
             elif not hasDeleted:
                 hasDeleted = True
             else:

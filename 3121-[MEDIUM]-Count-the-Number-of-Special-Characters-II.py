@@ -66,8 +66,7 @@ class Solution2:
             cIx = ord(c.lower()) - ord("a")
 
             if c.islower():
-                if pos > lastLowerIx[cIx]:
-                    lastLowerIx[cIx] = pos
+                lastLowerIx[cIx] = max(lastLowerIx[cIx], pos)
             else:
                 if firstUpperIx[cIx] == -1:
                     firstUpperIx[cIx] = pos

@@ -24,6 +24,6 @@ class Solution:
         res = []
 
         for i in range(n + 1):
-            res.append(bin(i).count("1"))
+            res.append((i).bit_count("1"))
 
         return res

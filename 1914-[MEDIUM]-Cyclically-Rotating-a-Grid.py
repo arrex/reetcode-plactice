@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution1:
     """
     Intuition:
@@ -20,7 +23,7 @@ class Solution1:
         memory complexity.
     """
 
-    def rotateGrid(self, grid: list[list[int]], k: int) -> list[list[int]]:
+    def rotateGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:
         if k == 0:
             return grid
 
@@ -90,7 +93,7 @@ class Solution2:
         Same as Solution 1.
     """
 
-    def rotateGrid(self, grid: list[list[int]], k: int) -> list[list[int]]:
+    def rotateGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:
         if k == 0:
             return grid
 

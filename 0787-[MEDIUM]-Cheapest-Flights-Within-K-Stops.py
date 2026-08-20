@@ -35,8 +35,7 @@ class Solution1:
         for _ in range(k + 1):
             tmp = prices[:]
             for u, v, cost in flights:
-                if prices[u] + cost < tmp[v]:
-                    tmp[v] = prices[u] + cost
+                tmp[v] = min(tmp[v], prices[u] + cost)
             prices = tmp  # update layer
 
         return prices[dst] if prices[dst] < inf else -1

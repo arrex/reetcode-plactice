@@ -1,3 +1,6 @@
+from typing import List
+
+
 class TrieNode:
     def __init__(self, optWord, optIx):
         self.optWord = optWord
@@ -31,7 +34,7 @@ class Solution:
         at most O(n * k) space.
     """
 
-    def stringIndices(self, wordsContainer: list[str], wordsQuery: list[str]) -> list[int]:
+    def stringIndices(self, wordsContainer: List[str], wordsQuery: List[str]) -> List[int]:
         trieRoot = TrieNode(wordsContainer[0], 0)
 
         for ix, word in enumerate(wordsContainer):

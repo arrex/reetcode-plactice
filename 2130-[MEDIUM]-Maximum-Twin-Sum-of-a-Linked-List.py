@@ -93,8 +93,7 @@ class Solution2:
         while l1:
             sum = l1.val + l2.val
 
-            if sum > res:
-                res = sum
+            res = max(res, sum)
 
             l1 = l1.next
             l2 = l2.next

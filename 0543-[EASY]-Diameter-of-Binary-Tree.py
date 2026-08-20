@@ -89,8 +89,7 @@ class Solution2:
                     currDiam = dL + dR
 
                     # update max diameter
-                    if currDiam > maxDiam:
-                        maxDiam = currDiam
+                    maxDiam = max(maxDiam, currDiam)
 
                     # update depth mapping of current node
                     depths[node] = max(dL, dR) + 1

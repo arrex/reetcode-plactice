@@ -1,4 +1,5 @@
 from math import inf
+from typing import List
 
 
 class Solution:
@@ -15,16 +16,16 @@ class Solution:
         O(1).
     """
 
-    def minElement(self, nums: list[int]) -> int:
+    def minElement(self, nums: List[int]) -> int:
         res = inf
 
         for n in nums:
             repl = 0
+
             while n:
                 repl += n % 10
                 n //= 10
 
-            if repl < res:
-                res = repl
+            res = min(res, repl)
 
         return res

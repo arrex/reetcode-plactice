@@ -1,4 +1,5 @@
 from math import inf
+from typing import List
 
 
 class Solution:
@@ -19,7 +20,7 @@ class Solution:
         O(1).
     """
 
-    def threeSumClosest(self, nums: list[int], target: int) -> int:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
         N = len(nums)
         minDiff = inf
         res = nums[0] + nums[1] + nums[2]

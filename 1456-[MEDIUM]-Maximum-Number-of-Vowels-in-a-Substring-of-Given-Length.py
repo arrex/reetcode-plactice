@@ -76,7 +76,6 @@ class Solution2:
                 curr -= 1
 
             # Adjust result
-            if curr > res:
-                res = curr
+            res = max(res, curr)
 
         return res

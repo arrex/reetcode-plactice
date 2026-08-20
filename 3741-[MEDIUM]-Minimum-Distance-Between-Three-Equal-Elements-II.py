@@ -1,5 +1,6 @@
 from collections import defaultdict
 from math import inf
+from typing import List
 
 
 class Solution1:
@@ -19,12 +20,12 @@ class Solution1:
         O(n) for the hashmap.
     """
 
-    def minimumDistance(self, nums: list[int]) -> int:
+    def minimumDistance(self, nums: List[int]) -> int:
         if len(nums) < 3:
             return -1
 
         # build hashmap -- key on value
-        hashmap: defaultdict[int, list[int]] = defaultdict(list)
+        hashmap = defaultdict(list)
         for ix, n in enumerate(nums):
             hashmap[n].append(ix)
 
@@ -39,9 +40,7 @@ class Solution1:
             for l in range(len(indices) - 2):
                 r = l + 2
                 dist = abs(indices[l] - indices[r]) * 2
-
-                if dist < minDist:
-                    minDist = dist
+                minDist = min(minDist, dist)
 
         return minDist if minDist != inf else -1
 
@@ -72,20 +71,19 @@ class Solution2:
         Overall, O(n) space.
     """
 
-    def minimumDistance(self, nums: list[int]) -> int:
+    def minimumDistance(self, nums: List[int]) -> int:
         if len(nums) < 3:
             return -1
 
-        prev: dict[int, int] = {}
-        prevprev: dict[int, int] = {}
+        prev = {}
+        prevprev = {}
         res = inf
 
         for i, n in enumerate(nums):
             if n in prevprev:
                 k = prevprev[n]
                 dist = 2 * abs(i - k)
-                if dist < res:
-                    res = dist
+                res = min(res, dist)
 
                 prevprev[n] = prev[n]
                 prev[n] = i

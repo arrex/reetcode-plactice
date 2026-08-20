@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     """
     Intuition:
@@ -23,7 +26,7 @@ class Solution:
         Note that auxiliary memory usage is O(1).
     """
 
-    def fourSum(self, nums: list[int], target: int) -> list[list[int]]:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         N = len(nums)
         nums.sort()
         res = []

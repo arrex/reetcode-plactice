@@ -39,8 +39,7 @@ class Solution:
                 freq[ix] += 1
 
                 # check if curr char now has highest freq
-                if freq[ix] > maxFreq:
-                    maxFreq = freq[ix]
+                maxFreq = max(maxFreq, freq[ix])
 
                 if r - l + 1 == maxFreq * distinct:
                     res = max(res, r - l + 1)

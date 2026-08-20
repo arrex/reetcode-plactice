@@ -1,5 +1,6 @@
 from collections import defaultdict
 from math import inf
+from typing import List
 
 
 class Solution1:
@@ -33,19 +34,17 @@ class Solution1:
         Overall, O(n) space.
     """
 
-    def minimumAbsDifference(self, arr: list[int]) -> list[list[int]]:
+    def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
         arr.sort()
         minDiff = inf
 
         # hashmap -- key on diff
-        hashmap: defaultdict[int, list[list[int]]] = defaultdict(list)
+        hashmap = defaultdict(list)
         for i in range(len(arr) - 1):
             a, b = arr[i], arr[i + 1]
             diff = abs(a - b)
             hashmap[diff].append([a, b])
-
-            if diff < minDiff:
-                minDiff = diff
+            minDiff = min(minDiff, diff)
 
         return hashmap[minDiff]
 
@@ -70,14 +69,14 @@ class Solution2:
         Still O(n) since we have to sort the array in place.
     """
 
-    def minimumAbsDifference(self, arr: list[int]) -> list[list[int]]:
+    def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
         if not arr:
             return []
 
         arr.sort()
 
         minDiff = inf
-        res: list[list[int]] = []
+        res = []
         prev = arr[0]
 
         for n in arr[1:]:

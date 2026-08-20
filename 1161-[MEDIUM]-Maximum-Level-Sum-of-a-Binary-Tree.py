@@ -1,6 +1,6 @@
+from collections import defaultdict, deque
 from math import inf
 from typing import Optional
-from collections import deque, defaultdict
 
 
 # Definition for a binary tree node.

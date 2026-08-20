@@ -26,15 +26,13 @@ class Solution:
             if nums[r] == 1:
                 curr += 1
 
-                if curr > res:
-                    res = curr
+                res = max(res, curr)
             else:
                 if flipped < k:
                     flipped += 1
                     curr += 1
 
-                    if curr > res:
-                        res = curr
+                    res = max(res, curr)
                 else:
                     while nums[l] != 0:
                         curr -= 1

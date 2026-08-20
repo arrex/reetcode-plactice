@@ -1,5 +1,5 @@
-from typing import Optional, List
-from collections import deque, defaultdict
+from collections import defaultdict, deque
+from typing import List, Optional
 
 
 # Definition for a binary tree node.
@@ -40,14 +40,12 @@ class Solution:
             if node.left:
                 q.append((node.left, col - 1))
 
-                if col - 1 < minCol:
-                    minCol = col - 1
+                minCol = min(minCol, col - 1)
 
             if node.right:
                 q.append((node.right, col + 1))
 
-                if col + 1 > maxCol:
-                    maxCol = col + 1
+                maxCol = max(maxCol, col + 1)
 
         res = []
         for i in range(minCol, maxCol + 1):

@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution1:
     """
     Intuition:
@@ -18,7 +21,7 @@ class Solution1:
         O(1) since we only use ptrs.
     """
 
-    def findMin(self, nums: list[int]) -> int:
+    def findMin(self, nums: List[int]) -> int:
         N = len(nums)
 
         l, r = 0, N - 1
@@ -59,7 +62,7 @@ class Solution2:
         Still O(1).
     """
 
-    def findMin(self, nums: list[int]) -> int:
+    def findMin(self, nums: List[int]) -> int:
         N = len(nums)
         l, r = 0, N - 1
 

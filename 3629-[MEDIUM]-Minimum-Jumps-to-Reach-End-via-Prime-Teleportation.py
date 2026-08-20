@@ -1,4 +1,5 @@
 from collections import defaultdict, deque
+from typing import List
 
 
 class Solution:
@@ -47,7 +48,7 @@ class Solution:
         Overall, O(n) space complexity.
     """
 
-    def minJumps(self, nums: list[int]) -> int:
+    def minJumps(self, nums: List[int]) -> int:
         MAX_VAL = 10**6  # specified by constraint
 
         # watch https://www.youtube.com/results?search_query=spf+sieve+algorithm for more info

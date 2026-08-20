@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     """
     Intuition:
@@ -22,7 +25,7 @@ class Solution:
         O(1).
     """
 
-    def longestSubsequence(self, nums: list[int]) -> int:
+    def longestSubsequence(self, nums: List[int]) -> int:
         # XOR across whole array
         xor, N = 0, len(nums)
         for elmt in nums:

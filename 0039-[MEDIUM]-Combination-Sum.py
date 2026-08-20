@@ -91,9 +91,7 @@ class Solution2:
             if currSum == target:
                 res.append(currNums)
                 return
-            elif currSum > target or startIx >= len(nums):
-                return
-            elif nums[startIx] > target:
+            elif currSum > target or startIx >= len(nums) or nums[startIx] > target:
                 return
 
             # add num at startIx

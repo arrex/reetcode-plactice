@@ -32,7 +32,7 @@ class Solution:
     def numSquares(self, n: int) -> int:
         # don't need squares > n
         squares = [i**2 for i in range(1, int(sqrt(n) + 1))]
-        diffs = set([n - s for s in squares])
+        diffs = set({n - s for s in squares})
         turn = 1
 
         while 0 not in diffs:

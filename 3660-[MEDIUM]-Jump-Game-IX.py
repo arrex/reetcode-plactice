@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution1:
     """
     Intuition:
@@ -24,7 +27,7 @@ class Solution1:
         sorted input array), so need up to O(n) space.
     """
 
-    def maxValue(self, nums: list[int]) -> list[int]:
+    def maxValue(self, nums: List[int]) -> List[int]:
         N = len(nums)
         stack = []  # block = (value, left, right)
 
@@ -35,7 +38,7 @@ class Solution1:
 
             # merge logic
             while stack and stack[-1][0] > nums[i]:
-                topVal, topLeft, topRight = stack.pop()
+                topVal, topLeft, _ = stack.pop()
                 currVal = max(currVal, topVal)
                 currLeft = topLeft
 
@@ -69,7 +72,7 @@ class Solution2:
         Still O(n) for 'res' array. O(1) auxiliary space.
     """
 
-    def maxValue(self, nums: list[int]) -> list[int]:
+    def maxValue(self, nums: List[int]) -> List[int]:
         # pass 1 - prefix max for each elmt
         N, res = len(nums), [nums[0]]
         for n in nums[1:]:

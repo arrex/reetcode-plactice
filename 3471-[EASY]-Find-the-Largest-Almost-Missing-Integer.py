@@ -1,4 +1,5 @@
 from collections import Counter
+from typing import List
 
 
 class Solution1:
@@ -16,7 +17,7 @@ class Solution1:
         O(n) for the `counter` hashmap.
     """
 
-    def largestInteger(self, nums: list[int], k: int) -> int:
+    def largestInteger(self, nums: List[int], k: int) -> int:
         counter = {}
         l, r = 0, k - 1
 
@@ -72,7 +73,7 @@ class Solution2:
         O(n) for the counter dictionary.
     """
 
-    def largestInteger(self, nums: list[int], k: int) -> int:
+    def largestInteger(self, nums: List[int], k: int) -> int:
         # case k == n i.e. single subarray window
         if k == len(nums):
             return max(nums)
