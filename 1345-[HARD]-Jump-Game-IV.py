@@ -41,7 +41,7 @@ class Solution:
 
         # starting pos
         q = deque([0])
-        seen = set([0])
+        seen = {0}
         jumps = 0
         while q:
             for _ in range(len(q)):

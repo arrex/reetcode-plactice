@@ -4,14 +4,10 @@ indent-width = 4
 
 [tool.ruff.lint]
 ignore = [
-    "C405",
-    "E741",
-    "PERF402",
-    "RUF015",
-    "SIM211",
-    "UP045",
-    "UP006",
-    "UP035",
+    # Kept specifically for LeetCode legacy typing parity:
+     "UP006", # Allow List[T], Dict[K, V], etc.
+     "UP035", # Allow importing List, Dict, Tuple from typing
+     "UP045", # Allow Optional[T] instead of T | None
 ]
 
 [tool.ruff.format]

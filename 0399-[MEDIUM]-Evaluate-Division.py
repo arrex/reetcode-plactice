@@ -72,7 +72,7 @@ class Solution:
         def dfs(src, target):
             # Encode as (node, result)
             q = deque([(src, 1.0)])
-            seen = set([src])
+            seen = {src}
 
             while q:
                 node, res = q.pop()

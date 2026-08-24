@@ -120,7 +120,8 @@ class Solution2:
         prefix = ""
 
         while len(curr) == 1:
-            key = list(curr.keys())[0]
+            # grab first elmt
+            key = next(iter(curr.keys()))
 
             if key == "#":
                 break

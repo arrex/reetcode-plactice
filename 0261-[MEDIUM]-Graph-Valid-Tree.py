@@ -98,4 +98,4 @@ class Solution2:
                 if nei != parent:
                     q.append((node, nei))
 
-        return False if len(seen) != n else True
+        return len(seen) == n

@@ -18,9 +18,7 @@ class Solution1:
 
     def convert(self, s: str, numRows: int) -> str:
         cycle = [i for i in range(numRows)]
-
-        for i in range(numRows - 2, 0, -1):
-            cycle.append(i)
+        cycle.extend(range(numRows - 2, 0, -1))
 
         rows = [[] for _ in range(numRows)]
 

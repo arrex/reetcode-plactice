@@ -44,7 +44,7 @@ class Solution1:
         res = 0
         # DFS from city 0, encode as (city, parent)
         q = deque([0])
-        seen = set([0])
+        seen = {0}
 
         while q:
             city = q.pop()

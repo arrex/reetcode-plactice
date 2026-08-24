@@ -23,7 +23,7 @@ class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
         # Constraints specify at least 2 rooms
         numRooms = len(rooms)
-        visited = set([0])
+        visited = {0}
 
         # Init queue
         q = deque(rooms[0])

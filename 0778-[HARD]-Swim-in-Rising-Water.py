@@ -38,7 +38,7 @@ class Solution:
 
         # encode as (elevation, (r, c))
         pq = [(grid[0][0], (0, 0))]
-        seen = set([(0, 0)])
+        seen = {(0, 0)}
         while pq:
             time, (r, c) = heapq.heappop(pq)
 
