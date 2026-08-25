@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+
+. .venv/bin/activate
+
+while IFS= read -r -d '' file; do
+  ruff check --fix -- "$file"
+  ruff format -- "$file"
+  git add -- "$file"
+done < <(git diff --cached --name-only --diff-filter=ACMR -z -- '*.py')
