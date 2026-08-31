@@ -9,7 +9,7 @@ class ListNode:
         self.next = next
 
 
-class Solution:
+class Solution1:
     """
     Intuition:
         We scan the linked list by looking at sets of 3 nodes (prev, curr, next) to
@@ -67,5 +67,60 @@ class Solution:
         for l in range(len(crit) - 1):
             r = l + 1
             minDist = min(minDist, crit[r] - crit[l])
+
+        return [minDist, maxDist]
+
+
+class Solution2:
+    """
+    Intuition:
+        We can slightly refine solution 1 by realizing that the max distance only
+        cares about the first and last critical pts and the min distance only cares
+        about adjacent crit pts.
+
+        As such, we do not need to track all critical points, only the ones we care
+        about. This eliminates the second pass over all pairs of crit pts to find
+        min distance.
+
+    Runtime:
+        Still O(n).
+
+    Memory:
+        O(1).
+    """
+
+    def nodesBetweenCriticalPoints(self, head: Optional[ListNode]) -> List[int]:
+        if not head:
+            return [-1, -1]
+
+        # we only care about the previous crit pt for min dist
+        prevCrit, minDist = -inf, inf
+        # we only care about first and last crit pts for max dist
+        firstCrit, lastCrit = None, None
+
+        pos = 1
+        prev, curr = head, head.next
+        while curr and curr.next:
+            next = curr.next
+
+            if (curr.val < prev.val and curr.val < next.val) or (
+                curr.val > prev.val and curr.val > next.val
+            ):
+                if not firstCrit:
+                    firstCrit = pos
+
+                minDist = min(minDist, pos - prevCrit)
+                prevCrit = pos
+                lastCrit = pos
+
+            prev, curr = curr, next
+            pos += 1
+
+        # either no crit pts or only 1 crit pt
+        if not firstCrit or firstCrit == lastCrit:
+            return [-1, -1]
+
+        # compute max dist
+        maxDist = lastCrit - firstCrit
 
         return [minDist, maxDist]
