@@ -1,7 +1,7 @@
 from math import inf
 
 
-class Solution:
+class Solution1:
     """
     Intuition:
         The intuition for this problem is similar to the previous variant
@@ -33,3 +33,32 @@ class Solution:
 
         # mix of both
         return minEven > minOdd
+
+
+class Solution2:
+    """
+    Intuition:
+        Same intuition as above, solution rewritten with earlier exit
+        condition to be more efficient.
+
+    Runtime:
+        O(n) for the linear scan.
+
+    Memory:
+        O(1).
+    """
+
+    def uniformArray(self, nums1: list[int]) -> bool:
+        minN = min(nums1)
+
+        # smallest elmt is odd
+        if minN % 2 == 1:
+            return True
+
+        # at this point, we know smallest elmt is even
+        for n in nums1:
+            # found an odd number greater than smallest even elmt
+            if n % 2 == 1 and n > minN:
+                return False
+
+        return True
