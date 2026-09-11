@@ -6,3 +6,6 @@ setup:
 lint:
     ruff check --fix .
     ruff format .
+
+freeze:
+    pip freeze > requirements.txt
