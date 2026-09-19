@@ -1,7 +1,7 @@
 from math import sqrt
 
 
-class Solution:
+class Solution1:
     """
     Intuition:
         The idea is to traverse the perimeter of the rectangle and verify
@@ -47,3 +47,44 @@ class Solution:
                 return True
 
         return False
+
+
+class Solution2:
+    """
+    Intuition:
+        Find the closest point in the rectangle to the center of the circle.
+
+        We denote this point (dx, dy).
+
+        Then, the check is simply to compare the distance between this closest
+        point and the center of the circle, and compare it to the radius. If
+        it is greater than the radius, then there is no overlap. Otherwise, there
+        is overlap.
+
+    Runtime:
+        O(1).
+
+    Memory:
+        O(1).
+    """
+
+    def checkOverlap(
+        self, radius: int, xCenter: int, yCenter: int, x1: int, y1: int, x2: int, y2: int
+    ) -> bool:
+        dx, dy = 0, 0
+
+        if xCenter < x1:
+            dx = x1
+        elif x1 <= xCenter <= x2:
+            dx = xCenter
+        else:
+            dx = x2
+
+        if yCenter < y1:
+            dy = y1
+        elif y1 <= yCenter <= y2:
+            dy = yCenter
+        else:
+            dy = y2
+
+        return (dx - xCenter) ** 2 + (dy - yCenter) ** 2 <= radius * radius
