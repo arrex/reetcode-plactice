@@ -46,7 +46,7 @@ class NumArray:
 
     # private helper to perform a point update & prop changes
     # to range sums
-    def _add(self, ix: int, val: int) -> int:
+    def _add(self, ix: int, val: int) -> None:
         while ix <= self.size:
             self.fenwick[ix] += val
             ix += ix & -ix  # add last set bit
