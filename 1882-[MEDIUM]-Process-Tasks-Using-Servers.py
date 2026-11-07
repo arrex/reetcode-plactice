@@ -2,7 +2,7 @@ import heapq
 from collections import deque
 
 
-class Solution:
+class Solution1:
     """
     Intuition:
         Use a min-heap for available servers keyed on the weight of the server (and index to tie-break).
@@ -86,5 +86,57 @@ class Solution:
             worker = heapq.heappop(idle)
             heapq.heappush(busy, (time + duration, worker))
             res.append(worker[1])
+
+        return res
+
+
+class Solution2:
+    """
+    Intuition:
+        We can refine our approach by noticing the following: if we get a task and we have
+        no idle servers, then we know that the server that will process this task is the
+        root of the `busy` min-heap (i.e. server with the nearest deadline). Thus, whenever
+        we encounter that case, we can just set the new deadline to the end time of that
+        task with the duration of the current task.
+
+        This observation allows us to remove the need to write 2 separate loops and the
+        need for a queue.
+
+    Runtime:
+        n servers, m tasks.
+
+        O(n) to build the idle servers heap.
+
+        The loop has O(m) iterations. Each task is assigned once and accompanied by a server
+        transition (idle -> busy or busy -> idle) which costs O(log n). Thus, O(m log n)
+        runtime.
+
+        Overall, O(n + m log n) runtime.
+
+    Memory:
+        O(n) for the idle and busy server heaps.
+    """
+
+    def assignTasks(self, servers: list[int], tasks: list[int]) -> list[int]:
+        # init idle server pool
+        idle = [(s, ix) for ix, s in enumerate(servers)]
+        heapq.heapify(idle)
+        # init busy server pool -> holds (deadline, (server, ix))
+        busy = []
+
+        res = [0] * len(tasks)
+        for time, duration in enumerate(tasks):
+            while busy and busy[0][0] <= time:
+                _, worker = heapq.heappop(busy)
+                heapq.heappush(idle, worker)
+
+            if idle:
+                worker = heapq.heappop(idle)
+                heapq.heappush(busy, (time + duration, worker))
+                res[time] = worker[1]
+            else:
+                endTime, worker = heapq.heappop(busy)
+                heapq.heappush(busy, (endTime + duration, worker))
+                res[time] = worker[1]
 
         return res
