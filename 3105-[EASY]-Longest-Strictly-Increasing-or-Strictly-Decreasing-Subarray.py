@@ -1,7 +1,7 @@
 from typing import List
 
 
-class Solution:
+class Solution1:
     """
     Intuition:
         Use dynamic sliding window approach.
@@ -40,5 +40,45 @@ class Solution:
 
             if curr > longestDecr:
                 longestDecr = curr
+
+        return max(longestIncr, longestDecr)
+
+
+class Solution2:
+    """
+    Intuition:
+        Same as Solution1. We merge both linear passes into a single
+        pass instead.
+
+    Runtime:
+        O(n).
+
+    Memory:
+        O(1).
+    """
+
+    def longestMonotonicSubarray(self, nums: List[int]) -> int:
+        N = len(nums)
+
+        currIncr, longestIncr = 1, 1
+        currDecr, longestDecr = 1, 1
+        for r in range(1, N):
+            # adjust strictly increasing window
+            if nums[r] > nums[r - 1]:
+                currIncr += 1
+            else:
+                currIncr = 1
+
+            if currIncr > longestIncr:
+                longestIncr = currIncr
+
+            # adjust strictly decreasing window
+            if nums[r] < nums[r - 1]:
+                currDecr += 1
+            else:
+                currDecr = 1
+
+            if currDecr > longestDecr:
+                longestDecr = currDecr
 
         return max(longestIncr, longestDecr)
