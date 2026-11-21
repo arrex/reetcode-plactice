@@ -1,4 +1,4 @@
-class Solution:
+class Solution1:
     """
     Intuition:
         We can model this problem intuitively using a top-down recursive approach (top-down
@@ -77,3 +77,60 @@ class Solution:
                 return best
 
         return dfs(0, False, 2)
+
+
+class Solution2:
+    """
+    Intuition:
+        We can translate our top-down recursive approach into a bottom-up tabular
+        approach by looking at the structure of the recursive dfs helper in
+        Solution 1. When going about top-down to bottom up translations, the key
+        is in observing how the recursive function expressese the recurrence
+        relation.
+
+        Let us denote the function F(d, h, r) as the function outputting the max
+        profits from day d onward with h representing if we are currently holding
+        stock and r representing the remaining number of transactions we can make.
+
+        From this, we can see that our recurrence relations are:
+        - F(d, 1, r) = max(-prices[d] + F(d + 1, 0, r - 1), F(d + 1, 1, r))
+          i.e. best of sell or skip
+        - F(d, 0, r) = max(prices[d] + F(d + 1, 1, r), F(d + 1, 0, r))
+          i.e. best of buy or skip
+
+        Notice that our base cases are at d == len(prices). As such, this means that
+        we will have to process days in reverse order (right to left) to build off
+        the base case in a bottom-up manner. We can also embed the base cases into
+        our dp cache by zero initializing it.
+
+    Runtime:
+        O(3 * 2 * n) ~ O(n) to process each state once.
+
+    Memory:
+        O(3 * 2 * n) ~ O(n) for the dp cache.
+    """
+
+    def maxProfit(self, prices: list[int]) -> int:
+        # dp[i][j][k] = max profits at day = i with holding = j and remaining tx = k
+        # 0-init to cover base cases
+        dp = [[[0] * 3 for _ in range(2)] for _ in range(len(prices) + 1)]
+
+        # process days in reverse order based on recurrence relation
+        for day in range(len(prices) - 1, -1, -1):
+            for holding in range(2):
+                for remTx in [
+                    1,
+                    2,
+                ]:  # don't care about 0 remaining tx since profit is 0 by base case
+                    if holding:  # sell or skip
+                        dp[day][True][remTx] = max(
+                            prices[day] + dp[day + 1][False][remTx - 1], dp[day + 1][True][remTx]
+                        )
+                    else:  # buy or skip
+                        dp[day][holding][remTx] = max(
+                            -prices[day] + dp[day + 1][True][remTx], dp[day + 1][False][remTx]
+                        )
+
+        # max profits if we start at day 0 onward, currenly not holding anything,
+        # and have 2 txs left to make
+        return dp[0][False][2]
