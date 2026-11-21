@@ -134,3 +134,38 @@ class Solution2:
         # max profits if we start at day 0 onward, currenly not holding anything,
         # and have 2 txs left to make
         return dp[0][False][2]
+
+
+class Solution3:
+    """
+    Intuition:
+        We can build off Solution 2 by realizing that the recurrence relation only
+        depends on the current day and the next day. Thus, we only need to store
+        the buffers for 2 days rather than all of them.
+
+    Runtime:
+        Still O(n).
+
+    Memory:
+        O(6) for each buffer which simplifies to O(1).
+    """
+
+    def maxProfit(self, prices: list[int]) -> int:
+        tmrw = [[0] * 3 for _ in range(2)]
+        today = [[0] * 3 for _ in range(2)]
+
+        for day in range(len(prices) - 1, -1, -1):
+            for holding in range(2):
+                for remTx in [1, 2]:
+                    if holding:  # sell or skip
+                        today[True][remTx] = max(
+                            prices[day] + tmrw[False][remTx - 1], tmrw[True][remTx]
+                        )
+                    else:  # buy or skip
+                        today[False][remTx] = max(
+                            -prices[day] + tmrw[True][remTx], tmrw[False][remTx]
+                        )
+
+            today, tmrw = tmrw, today
+
+        return tmrw[False][2]
