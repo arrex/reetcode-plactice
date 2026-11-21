@@ -1,3 +1,4 @@
+import heapq
 from typing import List, Optional
 
 
@@ -8,7 +9,7 @@ class ListNode:
         self.next = next
 
 
-class Solution:
+class Solution1:
     """
     Intuition:
         This problem builds upon problem 21. We can reuse the same idea of merging 2 lists at a time
@@ -69,5 +70,50 @@ class Solution:
             curr.next = l2
             curr = curr.next
             l2 = l2.next
+
+        return dummy.next
+
+
+class Solution2:
+    """
+    Intuition:
+        We use a min-heap to sort the heads of the lists in ascending
+        order of value. Then, we simply process the root of the min-heap
+        until we have exhausted all nodes.
+
+    Runtime:
+        Suppose we have n lists with the longest one having k nodes.
+
+        Creating the min-heap prio queue takes O(n).
+
+        Exhausting the min-heap takes O(n * k * log n) as we have
+        O(n * k) nodes in total to process with each iteration taking
+        O(log n) time to push the next node of the processed list into
+        the min-heap.
+
+    Memory:
+        O(n) auxiliary space for the min-heap.
+    """
+
+    def mergeKLists(self, lists: list[ListNode | None]) -> ListNode | None:
+        if not lists:
+            return None
+
+        dummy = merged = ListNode()
+
+        # ix is only there to tie-break nodes w same
+        # val since ListNode is not comparable
+        pq = [(node.val, ix, node) for ix, node in enumerate(lists) if node]
+        heapq.heapify(pq)
+
+        while pq:
+            _, ix, node = heapq.heappop(pq)
+
+            merged.next = node
+            merged = merged.next
+
+            node = node.next
+            if node:
+                heapq.heappush(pq, (node.val, ix, node))
 
         return dummy.next
