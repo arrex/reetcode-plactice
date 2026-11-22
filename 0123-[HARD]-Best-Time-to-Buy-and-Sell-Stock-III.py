@@ -216,3 +216,44 @@ class Solution4:
             holding1 = max(prices[day], holding1)
 
         return flat2
+
+
+class Solution5:
+    """
+    Intuition:
+        Same as Solution 4. We rewrite max() calls using if-blocks to
+        speed up runtime performance even more.
+
+        Ts beats like 99% on leetcode.
+
+    Runtime:
+        Still O(n).
+
+    Memory:
+        Still O(1).
+    """
+
+    def maxProfit(self, prices: list[int]) -> int:
+        # flat = shorthand in trading to mean not holding anything
+        #
+        # holding1: holding=True, remTx=1
+        # holding2: holding=True, remTx=2
+        # flat1: holding=False, remTx=1
+        # flat2: holding=False, remTx=2
+        holding1 = holding2 = 0
+        flat1 = flat2 = 0
+
+        for day in range(len(prices) - 1, -1, -1):
+            if -prices[day] + holding2 > flat2:
+                flat2 = -prices[day] + holding2
+
+            if prices[day] + flat1 > holding2:
+                holding2 = prices[day] + flat1
+
+            if -prices[day] + holding1 > flat1:
+                flat1 = -prices[day] + holding1
+
+            if prices[day] > holding1:
+                holding1 = prices[day]
+
+        return flat2
