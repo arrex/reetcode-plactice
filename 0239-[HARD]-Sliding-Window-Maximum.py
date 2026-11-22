@@ -28,64 +28,27 @@ class Solution1:
     """
 
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        if len(nums) <= k:
-            return [max(nums)]
+        # build max heap
+        pq = [(n, ix) for ix, n in enumerate(nums[:k])]
+        heapq.heapify_max(pq)
 
-        maxH = []
-        for ix in range(k):
-            n = nums[ix]
-            heapq.heappush(maxH, (-n, ix))
-
-        currMax, _ = maxH[0]
-        res = [-currMax]
-
+        res = [pq[0][0]]
         for r in range(k, len(nums)):
-            _, peekIx = maxH[0]
-            while peekIx < r - k + 1:
-                heapq.heappop(maxH)
+            l = r - k + 1
 
-                if not maxH:
-                    break
+            # pop stale entries
+            while pq and pq[0][1] < l:
+                heapq.heappop_max(pq)
 
-                _, peekIx = maxH[0]
+            # push new elmt in window
+            heapq.heappush_max(pq, (nums[r], r))
 
-            heapq.heappush(maxH, (-nums[r], r))
-
-            root, ix = maxH[0]
-            res.append(-root)
+            res.append(pq[0][0])
 
         return res
 
 
 class Solution2:
-    """
-    Intuition:
-        Same as Solution1. Just rewritten in a much more elegant way.
-
-    Runtime:
-        Same as Solution1.
-
-    Memory:
-        Same as Solution1.
-    """
-
-    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        heap = []
-        res = []
-
-        for i in range(len(nums)):
-            heapq.heappush(heap, (-nums[i], i))
-
-            if i >= k - 1:
-                while heap[0][1] <= i - k:
-                    heapq.heappop(heap)
-
-                res.append(-heap[0][0])
-
-        return res
-
-
-class Solution3:
     """
     Intuition:
         Instead of using a heap to track the elements in our current window, we model the same
