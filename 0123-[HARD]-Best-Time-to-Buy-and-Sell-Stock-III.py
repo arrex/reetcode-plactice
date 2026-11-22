@@ -169,3 +169,50 @@ class Solution3:
             today, tmrw = tmrw, today
 
         return tmrw[False][2]
+
+
+class Solution4:
+    """
+    Intuition:
+        We build off of Solution 3. Observe that only 4 values ever change.
+
+        For a given day, we only care about:
+        - holding=True, remTx=1
+        - holding=True, remTx=2
+        - holding=False, remTx=1
+        - holding=False, remTx=2
+
+        As per base cases, we do not care about remTx=0 since we cannot make
+        profits if we have no transactions left.
+
+        As such, we can collapse the nested array buffers into 4 variables
+        to make computations more efficient.
+
+        Beware of ordering since we mutate variables. We need to order
+        assignments in a way that an updated value is not used in subsequent
+        calculations.
+
+    Runtime:
+        Still O(n).
+
+    Memory:
+        Still O(1).
+    """
+
+    def maxProfit(self, prices: list[int]) -> int:
+        # flat = shorthand in trading to mean not holding anything
+        #
+        # holding1: holding=True, remTx=1
+        # holding2: holding=True, remTx=2
+        # flat1: holding=False, remTx=1
+        # flat2: holding=False, remTx=2
+        holding1 = holding2 = 0
+        flat1 = flat2 = 0
+
+        for day in range(len(prices) - 1, -1, -1):
+            flat2 = max(-prices[day] + holding2, flat2)
+            holding2 = max(prices[day] + flat1, holding2)
+            flat1 = max(-prices[day] + holding1, flat1)
+            holding1 = max(prices[day], holding1)
+
+        return flat2
