@@ -1,4 +1,4 @@
-class Solution:
+class Solution1:
     """
     Intuition:
         We base our solution off of Leetcode problem #123.
@@ -37,3 +37,46 @@ class Solution:
             today, tmrw = tmrw, today
 
         return tmrw[0][k]
+
+
+class Solution2:
+    """
+    Intuition:
+        In problem #123, we went from buffers to the current day and the
+        subsequent day to 4 stand-alone vars since we noticed that only
+        4 values ever change.
+
+        We can generalize that idea here to flatten the shape of our buffers.
+        Instead of variables, though, we will use arrays since `k` can vary.
+
+        Ordering matters as we don't want to update a value that will be
+        used by later computations (inconsistent state transition). By
+        looking at the ordering in problem #123's Solution 4, we see that
+        the updates should happen in this order:
+        - flat, k
+        - holding, k
+        - flat, k-1
+        - holding, k-1
+        ...
+        - flat, 1
+        - holding, 1
+
+    Runtime:
+        Still O(n * k).
+
+    Memory:
+        Still O(k).
+    """
+
+    def maxProfit(self, k: int, prices: list[int]) -> int:
+        holding = [0] * (k + 1)
+        flat = [0] * (k + 1)
+
+        for day in range(len(prices) - 1, -1, -1):
+            for remTx in range(k, 0, -1):
+                # actions: buy or skip
+                flat[remTx] = max(-prices[day] + holding[remTx], flat[remTx])
+                # actions: sell or skip
+                holding[remTx] = max(prices[day] + flat[remTx - 1], holding[remTx])
+
+        return flat[k]
