@@ -80,3 +80,32 @@ class Solution2:
                 holding[remTx] = max(prices[day] + flat[remTx - 1], holding[remTx])
 
         return flat[k]
+
+
+class Solution3:
+    """
+    Intuition:
+        Same as Solution 2, but with max() calls rewritten as if-blocks.
+
+    Runtime:
+        Still O(n * k).
+
+    Memory:
+        Still O(k).
+    """
+
+    def maxProfit(self, k: int, prices: list[int]) -> int:
+        holding = [0] * (k + 1)
+        flat = [0] * (k + 1)
+
+        for day in range(len(prices) - 1, -1, -1):
+            for remTx in range(k, 0, -1):
+                # actions: buy or skip
+                if -prices[day] + holding[remTx] > flat[remTx]:
+                    flat[remTx] = -prices[day] + holding[remTx]
+
+                # actions: sell or skip
+                if prices[day] + flat[remTx - 1] > holding[remTx]:
+                    holding[remTx] = prices[day] + flat[remTx - 1]
+
+        return flat[k]
