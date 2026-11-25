@@ -6,12 +6,11 @@ class Solution1:
         iterate through every index of the input string and search for both
         even and odd palindromes.
 
-    Notes:
-        There exists a DP approach too that is covered in the solution below.
+    Runtime:
+        O(n * k) where k is the length of the longest palindromic substring.
 
-    Runtime: O(n * k) where k is the length of the longest palindromic substring
-
-    Memory: O(1)
+    Memory:
+        O(1).
     """
 
     def countSubstrings(self, s: str) -> int:
@@ -61,7 +60,7 @@ class Solution2:
         res = 0
         n = len(s)
         # Let dp[ix][jx] be True if the substring starting at ix and
-        # ending at jx inclusivelu is palindromic
+        # ending at jx inclusively is palindromic
         dp = [[False] * n for _ in range(n)]
 
         # Build base cases
